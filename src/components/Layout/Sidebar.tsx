@@ -8,23 +8,31 @@ import {
   CreditCard, 
   BarChart3, 
   Settings,
-  ShoppingCart
+  ShoppingCart,
+  Package,
+  Folder
 } from "lucide-react";
 import { useLocation, Link } from "react-router-dom";
-
-const navigation = [
-  { name: "Dashboard", href: "/", icon: LayoutDashboard },
-  { name: "Invoices", href: "/invoices", icon: FileText },
-  { name: "Clients", href: "/clients", icon: Users },
-  { name: "Expenses", href: "/expenses", icon: TrendingDown },
-  { name: "POS", href: "/pos", icon: ShoppingCart },
-  { name: "Payments", href: "/payments", icon: CreditCard },
-  { name: "Reports", href: "/reports", icon: BarChart3 },
-  { name: "Settings", href: "/settings", icon: Settings },
-];
+import { useTranslation } from "react-i18next";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { CurrencySwitcher } from "@/components/CurrencySwitcher";
 
 export function Sidebar() {
   const location = useLocation();
+  const { t } = useTranslation('common');
+
+  const navigation = [
+    { name: t('navigation.dashboard'), href: "/", icon: LayoutDashboard },
+    { name: t('navigation.invoices'), href: "/invoices", icon: FileText },
+    { name: t('navigation.clients'), href: "/clients", icon: Users },
+    { name: t('navigation.expenses'), href: "/expenses", icon: TrendingDown },
+    { name: t('navigation.pos'), href: "/pos", icon: ShoppingCart },
+    { name: t('navigation.payments'), href: "/payments", icon: CreditCard },
+    { name: "Inventory", href: "/inventory", icon: Package },
+    { name: "Projects", href: "/projects", icon: Folder },
+    { name: t('navigation.reports'), href: "/reports", icon: BarChart3 },
+    { name: t('navigation.settings'), href: "/settings", icon: Settings },
+  ];
 
   return (
     <div className="flex h-screen w-64 flex-col bg-sidebar border-r border-sidebar-border">
@@ -35,8 +43,8 @@ export function Sidebar() {
             <BarChart3 className="h-5 w-5 text-sidebar-primary-foreground" />
           </div>
           <div>
-            <h1 className="text-lg font-bold text-sidebar-foreground">AccountPro</h1>
-            <p className="text-xs text-sidebar-foreground/60">Business Edition</p>
+            <h1 className="text-lg font-bold text-sidebar-foreground">{t('app.name')}</h1>
+            <p className="text-xs text-sidebar-foreground/60">{t('app.subtitle')}</p>
           </div>
         </div>
       </div>
@@ -63,6 +71,14 @@ export function Sidebar() {
           );
         })}
       </nav>
+
+      {/* Language and Currency Switchers */}
+      <div className="border-t border-sidebar-border p-4 space-y-2">
+        <div className="flex flex-col space-y-2">
+          <LanguageSwitcher />
+          <CurrencySwitcher />
+        </div>
+      </div>
 
       {/* User info */}
       <div className="border-t border-sidebar-border p-4">

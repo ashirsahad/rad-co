@@ -1,0 +1,103 @@
+{
+  "app": {
+    "name": "AccountPro",
+    "subtitle": "Edición Empresarial"
+  },
+  "navigation": {
+    "dashboard": "Panel",
+    "invoices": "Facturas",
+    "clients": "Clientes",
+    "expenses": "Gastos",
+    "pos": "TPV",
+    "payments": "Pagos",
+    "reports": "Informes",
+    "settings": "Configuración"
+  },
+  "actions": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Añadir",
+    "create": "Crear",
+    "update": "Actualizar",
+    "export": "Exportar",
+    "import": "Importar",
+    "download": "Descargar",
+    "upload": "Subir",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "refresh": "Actualizar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "submit": "Enviar",
+    "confirm": "Confirmar",
+    "view": "Ver",
+    "print": "Imprimir"
+  },
+  "status": {
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "pending": "Pendiente",
+    "completed": "Completado",
+    "cancelled": "Cancelado",
+    "draft": "Borrador",
+    "sent": "Enviado",
+    "paid": "Pagado",
+    "overdue": "Vencido",
+    "partial": "Parcial"
+  },
+  "currency": {
+    "symbol": "€",
+    "format": "{{amount, currency}}",
+    "codes": {
+      "USD": "Dólar Estadounidense",
+      "EUR": "Euro",
+      "GBP": "Libra Esterlina",
+      "JPY": "Yen Japonés",
+      "CAD": "Dólar Canadiense",
+      "AUD": "Dólar Australiano",
+      "CHF": "Franco Suizo",
+      "CNY": "Yuan Chino",
+      "INR": "Rupia India"
+    }
+  },
+  "date": {
+    "today": "Hoy",
+    "yesterday": "Ayer",
+    "thisWeek": "Esta Semana",
+    "thisMonth": "Este Mes",
+    "thisYear": "Este Año",
+    "lastWeek": "Semana Pasada",
+    "lastMonth": "Mes Pasado",
+    "lastYear": "Año Pasado"
+  },
+  "validation": {
+    "required": "Este campo es obligatorio",
+    "email": "Por favor ingrese un email válido",
+    "phone": "Por favor ingrese un teléfono válido",
+    "url": "Por favor ingrese una URL válida",
+    "number": "Por favor ingrese un número válido",
+    "min": "El valor mínimo es {{min}}",
+    "max": "El valor máximo es {{max}}",
+    "minLength": "La longitud mínima es {{min}} caracteres",
+    "maxLength": "La longitud máxima es {{max}} caracteres"
+  },
+  "errors": {
+    "generic": "Ocurrió un error. Por favor intente de nuevo.",
+    "network": "Error de red. Por favor verifique su conexión.",
+    "unauthorized": "No está autorizado para realizar esta acción.",
+    "notFound": "El recurso solicitado no fue encontrado.",
+    "validation": "Por favor revise su entrada e intente de nuevo."
+  },
+  "success": {
+    "saved": "Guardado exitosamente",
+    "deleted": "Eliminado exitosamente",
+    "updated": "Actualizado exitosamente",
+    "created": "Creado exitosamente",
+    "sent": "Enviado exitosamente",
+    "exported": "Exportado exitosamente",
+    "imported": "Importado exitosamente"
+  }
+}

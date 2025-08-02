@@ -1,0 +1,103 @@
+{
+  "app": {
+    "name": "AccountPro",
+    "subtitle": "Édition Entreprise"
+  },
+  "navigation": {
+    "dashboard": "Tableau de bord",
+    "invoices": "Factures",
+    "clients": "Clients",
+    "expenses": "Dépenses",
+    "pos": "TPV",
+    "payments": "Paiements",
+    "reports": "Rapports",
+    "settings": "Paramètres"
+  },
+  "actions": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "add": "Ajouter",
+    "create": "Créer",
+    "update": "Mettre à jour",
+    "export": "Exporter",
+    "import": "Importer",
+    "download": "Télécharger",
+    "upload": "Téléverser",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "refresh": "Actualiser",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "submit": "Soumettre",
+    "confirm": "Confirmer",
+    "view": "Voir",
+    "print": "Imprimer"
+  },
+  "status": {
+    "active": "Actif",
+    "inactive": "Inactif",
+    "pending": "En attente",
+    "completed": "Terminé",
+    "cancelled": "Annulé",
+    "draft": "Brouillon",
+    "sent": "Envoyé",
+    "paid": "Payé",
+    "overdue": "En retard",
+    "partial": "Partiel"
+  },
+  "currency": {
+    "symbol": "€",
+    "format": "{{amount, currency}}",
+    "codes": {
+      "USD": "Dollar Américain",
+      "EUR": "Euro",
+      "GBP": "Livre Sterling",
+      "JPY": "Yen Japonais",
+      "CAD": "Dollar Canadien",
+      "AUD": "Dollar Australien",
+      "CHF": "Franc Suisse",
+      "CNY": "Yuan Chinois",
+      "INR": "Roupie Indienne"
+    }
+  },
+  "date": {
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "thisWeek": "Cette semaine",
+    "thisMonth": "Ce mois",
+    "thisYear": "Cette année",
+    "lastWeek": "Semaine dernière",
+    "lastMonth": "Mois dernier",
+    "lastYear": "Année dernière"
+  },
+  "validation": {
+    "required": "Ce champ est obligatoire",
+    "email": "Veuillez entrer une adresse email valide",
+    "phone": "Veuillez entrer un numéro de téléphone valide",
+    "url": "Veuillez entrer une URL valide",
+    "number": "Veuillez entrer un nombre valide",
+    "min": "La valeur minimale est {{min}}",
+    "max": "La valeur maximale est {{max}}",
+    "minLength": "La longueur minimale est {{min}} caractères",
+    "maxLength": "La longueur maximale est {{max}} caractères"
+  },
+  "errors": {
+    "generic": "Une erreur s'est produite. Veuillez réessayer.",
+    "network": "Erreur réseau. Veuillez vérifier votre connexion.",
+    "unauthorized": "Vous n'êtes pas autorisé à effectuer cette action.",
+    "notFound": "La ressource demandée n'a pas été trouvée.",
+    "validation": "Veuillez vérifier votre saisie et réessayer."
+  },
+  "success": {
+    "saved": "Enregistré avec succès",
+    "deleted": "Supprimé avec succès",
+    "updated": "Mis à jour avec succès",
+    "created": "Créé avec succès",
+    "sent": "Envoyé avec succès",
+    "exported": "Exporté avec succès",
+    "imported": "Importé avec succès"
+  }
+}
