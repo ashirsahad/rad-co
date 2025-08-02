@@ -61,6 +61,25 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Accounting app specific colors
+				success: {
+					DEFAULT: 'hsl(var(--success))',
+					foreground: 'hsl(var(--success-foreground))'
+				},
+				warning: {
+					DEFAULT: 'hsl(var(--warning))',
+					foreground: 'hsl(var(--warning-foreground))'
+				},
+				revenue: 'hsl(var(--revenue-bg))',
+				expense: 'hsl(var(--expense-bg))',
+				client: 'hsl(var(--client-bg))',
+				invoice: 'hsl(var(--invoice-bg))',
+				pos: {
+					button: 'hsl(var(--pos-button))',
+					'button-foreground': 'hsl(var(--pos-button-foreground))',
+					total: 'hsl(var(--pos-total))',
+					'total-foreground': 'hsl(var(--pos-total-foreground))'
 				}
 			},
 			borderRadius: {
