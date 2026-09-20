@@ -1,38 +1,60 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { 
-  LayoutDashboard, 
-  FileText, 
-  Users, 
-  TrendingDown, 
-  CreditCard, 
-  BarChart3, 
+import {
+  LayoutDashboard,
+  FileText,
+  Users,
+  TrendingDown,
+  CreditCard,
+  BarChart3,
   Settings,
   ShoppingCart,
   Package,
-  Folder
+  Folder,
+  Landmark,
+  UsersRound,
+  LogOut,
 } from "lucide-react";
 import { useLocation, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { CurrencySwitcher } from "@/components/CurrencySwitcher";
+import { usePermissions } from "@/hooks/usePermissions";
+import { useAuth } from "@/hooks/useAuth";
+
+const ICONS: Record<string, typeof LayoutDashboard> = {
+  dashboard: LayoutDashboard,
+  invoices: FileText,
+  clients: Users,
+  expenses: TrendingDown,
+  pos: ShoppingCart,
+  payments: CreditCard,
+  banking: Landmark,
+  inventory: Package,
+  projects: Folder,
+  reports: BarChart3,
+};
 
 export function Sidebar() {
   const location = useLocation();
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
+  const { allowedModules, isAdmin } = usePermissions();
+  const { profile, organizationName, signOut } = useAuth();
 
   const navigation = [
-    { name: t('navigation.dashboard'), href: "/", icon: LayoutDashboard },
-    { name: t('navigation.invoices'), href: "/invoices", icon: FileText },
-    { name: t('navigation.clients'), href: "/clients", icon: Users },
-    { name: t('navigation.expenses'), href: "/expenses", icon: TrendingDown },
-    { name: t('navigation.pos'), href: "/pos", icon: ShoppingCart },
-    { name: t('navigation.payments'), href: "/payments", icon: CreditCard },
-    { name: "Inventory", href: "/inventory", icon: Package },
-    { name: "Projects", href: "/projects", icon: Folder },
-    { name: t('navigation.reports'), href: "/reports", icon: BarChart3 },
-    { name: t('navigation.settings'), href: "/settings", icon: Settings },
+    ...allowedModules.map((m) => ({
+      name: t(m.i18nKey, { defaultValue: m.label }),
+      href: m.href,
+      icon: ICONS[m.key] ?? LayoutDashboard,
+    })),
+    ...(isAdmin
+      ? [{ name: t("navigation.team", { defaultValue: "Team" }), href: "/team", icon: UsersRound }]
+      : []),
+    { name: t("navigation.settings"), href: "/settings", icon: Settings },
   ];
+
+  const displayName = profile?.full_name || profile?.email || "";
+  const initial = (displayName || "?").charAt(0).toUpperCase();
 
   return (
     <div className="flex h-screen w-64 flex-col bg-sidebar border-r border-sidebar-border">
@@ -42,19 +64,21 @@ export function Sidebar() {
           <div className="h-8 w-8 bg-sidebar-primary rounded-md flex items-center justify-center">
             <BarChart3 className="h-5 w-5 text-sidebar-primary-foreground" />
           </div>
-          <div>
-            <h1 className="text-lg font-bold text-sidebar-foreground">{t('app.name')}</h1>
-            <p className="text-xs text-sidebar-foreground/60">{t('app.subtitle')}</p>
+          <div className="min-w-0">
+            <h1 className="text-lg font-bold text-sidebar-foreground truncate">{t("app.name")}</h1>
+            <p className="text-xs text-sidebar-foreground/60 truncate">
+              {organizationName ?? t("app.subtitle")}
+            </p>
           </div>
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 space-y-1 px-4 py-4">
+      <nav className="flex-1 space-y-1 overflow-y-auto px-4 py-4">
         {navigation.map((item) => {
           const isActive = location.pathname === item.href;
           return (
-            <Link key={item.name} to={item.href}>
+            <Link key={item.href} to={item.href}>
               <Button
                 variant={isActive ? "secondary" : "ghost"}
                 className={cn(
@@ -84,12 +108,23 @@ export function Sidebar() {
       <div className="border-t border-sidebar-border p-4">
         <div className="flex items-center space-x-3">
           <div className="h-8 w-8 bg-sidebar-accent rounded-full flex items-center justify-center">
-            <span className="text-sm font-medium text-sidebar-accent-foreground">A</span>
+            <span className="text-sm font-medium text-sidebar-accent-foreground">{initial}</span>
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-sidebar-foreground truncate">Admin User</p>
-            <p className="text-xs text-sidebar-foreground/60 truncate">admin@company.com</p>
+            <p className="text-sm font-medium text-sidebar-foreground truncate">
+              {profile?.full_name || "Member"}
+            </p>
+            <p className="text-xs text-sidebar-foreground/60 truncate">{profile?.email}</p>
           </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-sidebar-foreground hover:bg-sidebar-accent"
+            onClick={signOut}
+            aria-label="Sign out"
+          >
+            <LogOut className="h-4 w-4" />
+          </Button>
         </div>
       </div>
     </div>
