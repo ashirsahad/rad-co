@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { InvoiceForm } from "@/components/Invoice/InvoiceForm";
 import { useCurrency } from "@/hooks/useCurrency";
@@ -198,6 +198,9 @@ export default function Invoices() {
         }}
       >
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader className="sr-only">
+            <DialogTitle>Invoice details</DialogTitle>
+          </DialogHeader>
           <InvoiceForm
             invoice={
               editing?.raw ?? (editing

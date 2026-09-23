@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ExpenseForm } from "@/components/Expense/ExpenseForm";
 import { useCurrency } from "@/hooks/useCurrency";
 import { toast } from "@/hooks/use-toast";
@@ -239,6 +239,9 @@ export default function Expenses() {
         }}
       >
         <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader className="sr-only">
+            <DialogTitle>Expense details</DialogTitle>
+          </DialogHeader>
           <ExpenseForm
             expense={
               editing?.raw ?? (editing
