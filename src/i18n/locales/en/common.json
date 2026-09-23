@@ -11,7 +11,11 @@
     "pos": "POS",
     "payments": "Payments",
     "reports": "Reports",
-    "settings": "Settings"
+    "settings": "Settings",
+    "banking": "Banking",
+    "inventory": "Inventory",
+    "projects": "Projects",
+    "team": "Team"
   },
   "actions": {
     "save": "Save",

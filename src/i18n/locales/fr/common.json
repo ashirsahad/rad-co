@@ -11,7 +11,11 @@
     "pos": "TPV",
     "payments": "Paiements",
     "reports": "Rapports",
-    "settings": "Paramètres"
+    "settings": "Paramètres",
+    "banking": "Banque",
+    "inventory": "Inventaire",
+    "projects": "Projets",
+    "team": "Équipe"
   },
   "actions": {
     "save": "Enregistrer",
