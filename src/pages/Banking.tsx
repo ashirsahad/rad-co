@@ -1,3 +1,4 @@
+import { logAudit } from "@/lib/audit";
 import { useMemo, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -98,6 +99,7 @@ export default function Banking() {
     setTransactions((prev) =>
       prev.map((t) => (t.id === matchTx.id ? { ...t, reconciled: true, matchedTo: matchValue } : t)),
     );
+    logAudit("transaction_reconciled", "bank_transaction", matchTx.id, { matchedTo: matchValue });
     toast({ title: "Transaction matched", description: `${matchTx.id} is now reconciled with ${matchValue}.` });
     setMatchTx(null);
     setMatchValue("");

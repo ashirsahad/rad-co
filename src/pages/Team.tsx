@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth, AppRole } from "@/hooks/useAuth";
+import { logAudit } from "@/lib/audit";
 import { MODULES, ACCOUNTANT_MODULES } from "@/hooks/usePermissions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -171,6 +172,7 @@ export default function Team() {
       toast({ title: "Could not update member", description: error.message, variant: "destructive" });
       return;
     }
+    logAudit("member_status_changed", "user", member.id, { member: member.email, active: !member.is_active });
     setMembers((prev) => prev.map((m) => (m.id === member.id ? { ...m, is_active: !m.is_active } : m)));
   };
 

@@ -1,3 +1,4 @@
+import { logAudit } from "@/lib/audit";
 import { useMemo, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -85,6 +86,11 @@ export default function Expenses() {
       return [row, ...prev];
     });
 
+    logAudit(editing ? "expense_updated" : "expense_created", "expense", row.id, {
+      status: row.status,
+      amount: `${row.currency} ${row.amount}`,
+      description: row.description,
+    });
     toast({ title: editing ? "Expense updated" : "Expense added", description: row.description });
     setOpen(false);
     setEditing(null);

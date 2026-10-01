@@ -14,6 +14,7 @@ import {
   Landmark,
   UsersRound,
   LogOut,
+  ScrollText,
 } from "lucide-react";
 import { useLocation, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -48,7 +49,10 @@ export function Sidebar() {
       icon: ICONS[m.key] ?? LayoutDashboard,
     })),
     ...(isAdmin
-      ? [{ name: t("navigation.team", { defaultValue: "Team" }), href: "/team", icon: UsersRound }]
+      ? [
+          { name: t("navigation.team", { defaultValue: "Team" }), href: "/team", icon: UsersRound },
+          { name: t("navigation.auditLog", { defaultValue: "Audit log" }), href: "/audit-log", icon: ScrollText },
+        ]
       : []),
     { name: t("navigation.settings"), href: "/settings", icon: Settings },
   ];

@@ -19,6 +19,7 @@ import Settings from "./pages/Settings";
 import Inventory from "./pages/Inventory";
 import Projects from "./pages/Projects";
 import Team from "./pages/Team";
+import AuditLog from "./pages/AuditLog";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -43,6 +44,7 @@ const App = () => (
             <Route path="/inventory" element={<ProtectedRoute module="inventory"><Inventory /></ProtectedRoute>} />
             <Route path="/projects" element={<ProtectedRoute module="projects"><Projects /></ProtectedRoute>} />
             <Route path="/team" element={<ProtectedRoute adminOnly><Team /></ProtectedRoute>} />
+            <Route path="/audit-log" element={<ProtectedRoute adminOnly><AuditLog /></ProtectedRoute>} />
             <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

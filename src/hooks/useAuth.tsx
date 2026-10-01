@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { Session, User } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
+import { logAudit } from "@/lib/audit";
 
 export type AppRole = "admin" | "manager" | "accountant";
 
@@ -60,11 +61,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+    const { data: listener } = supabase.auth.onAuthStateChange((event, nextSession) => {
       setSession(nextSession);
       setUser(nextSession?.user ?? null);
       if (nextSession?.user) {
         setTimeout(() => {
+          if (event === "SIGNED_IN") {
+            const key = `audit_signin_${nextSession.access_token.slice(-16)}`;
+            if (!sessionStorage.getItem(key)) {
+              sessionStorage.setItem(key, "1");
+              logAudit("sign_in", "session", null, {
+                method: nextSession.user.app_metadata?.provider ?? "email",
+              });
+            }
+          }
           loadAccess(nextSession.user.id).finally(() => setLoading(false));
         }, 0);
       } else {

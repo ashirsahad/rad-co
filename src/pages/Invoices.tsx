@@ -1,3 +1,4 @@
+import { logAudit } from "@/lib/audit";
 import { useMemo, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -81,6 +82,11 @@ export default function Invoices() {
       return [row, ...prev];
     });
 
+    logAudit(editing ? "invoice_updated" : "invoice_created", "invoice", row.id, {
+      status: row.status,
+      total: `${row.currency} ${row.amount}`,
+      client: row.client,
+    });
     toast({ title: editing ? "Invoice updated" : "Invoice created", description: row.id });
     setOpen(false);
     setEditing(null);
