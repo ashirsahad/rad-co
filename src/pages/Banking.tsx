@@ -98,6 +98,7 @@ export default function Banking() {
     setTransactions((prev) =>
       prev.map((t) => (t.id === matchTx.id ? { ...t, reconciled: true, matchedTo: matchValue } : t)),
     );
+    logAudit("transaction_reconciled", "bank_transaction", matchTx.id, { matchedTo: matchValue });
     toast({ title: "Transaction matched", description: `${matchTx.id} is now reconciled with ${matchValue}.` });
     setMatchTx(null);
     setMatchValue("");

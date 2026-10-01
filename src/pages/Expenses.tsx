@@ -85,6 +85,11 @@ export default function Expenses() {
       return [row, ...prev];
     });
 
+    logAudit(editing ? "expense_updated" : "expense_created", "expense", row.id, {
+      status: row.status,
+      amount: `${row.currency} ${row.amount}`,
+      description: row.description,
+    });
     toast({ title: editing ? "Expense updated" : "Expense added", description: row.description });
     setOpen(false);
     setEditing(null);
